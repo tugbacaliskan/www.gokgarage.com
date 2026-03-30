@@ -158,7 +158,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); }
 .navbar-inner { display: flex; align-items: center; height: 68px; gap: 2rem; }
 
 .navbar-brand { display: flex; align-items: center; gap: .75rem; }
-.navbar-brand img { height: 42px; width: auto; }
+.navbar-brand img { height: 126px; width: auto; }
 .brand-text {
   font-family: var(--font-heading);
   font-size: 1.3rem; font-weight: 800;

@@ -1,5 +1,7 @@
 /* ============================================================
-   GÖK GARAGE OTO GALERİ — script.js  v3.1
+   GÖK GARAGE OTO GALERİ — script.js  v4.0
+   Araçlar /api/cars endpoint'inden otomatik çekilir.
+   Yeni ilan → otomatik eklenir. Kalkan ilan → görünmez.
    ============================================================ */
 
 (function () {
@@ -34,7 +36,7 @@
   }
 
   /* ── 2. HERO SLİDER ────────────────────────────────────── */
-  var heroSwiper = null;
+  var heroSwiper  = null;
   var SLIDE_COUNT = document.querySelectorAll('.hero-swiper .swiper-slide').length;
 
   function pad2(n) { return String(n).padStart(2, '0'); }
@@ -60,8 +62,8 @@
       touchStartPreventDefault: false,
       allowTouchMove: false,
       on: {
-        init: function() { updateHeroCounter(); },
-        realIndexChange: function() { updateHeroCounter(); },
+        init: function () { updateHeroCounter(); },
+        realIndexChange: function () { updateHeroCounter(); },
       },
     });
   }
@@ -71,6 +73,7 @@
   var statsSection  = document.querySelector('.stats');
 
   function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
   function animateCount(el, target, dur) {
     var startTs = null;
     function step(ts) {
@@ -97,53 +100,74 @@
   }
 
   /* ── 4. VİTRİN ─────────────────────────────────────────── */
-  var VITRIN_MAX   = 6;
-  var demoBanner   = document.getElementById('demo-banner');
-  var statActive   = document.getElementById('stat-active');
-  var grid         = document.getElementById('vitrin-grid');
-  var filterBtns   = document.querySelectorAll('.vfilt');
-  var allCars      = [];
+  var VITRIN_MAX      = 6;
+  var AUTO_REFRESH_MS = 5 * 60 * 1000; // 5 dakikada bir yenile
+
+  var demoBanner = document.getElementById('demo-banner');
+  var statActive = document.getElementById('stat-active');
+  var grid       = document.getElementById('vitrin-grid');
+  var filterBtns = document.querySelectorAll('.vfilt');
+  var allCars    = [];
   var activeFilter = 'all';
 
-  var DEMO_CARS = [
-    { id:'d1', brand:'BMW',           title:'320D M Sport',          variant:'Hatasız · Sunroof · NBT · Isıtmalı Koltuk',         price:'1.525.000 ₺', km:'—',         year:'',     transmission:'Otomatik', fuel:'Dizel',  status:'active', badge:'',     image:'https://i0.shbdn.com/photos/62/40/06/1268624006b15.jpg', url:'https://sahibinden.com/ilan/vasita-otomobil-bmw-gok-garage-bmw-320d-m-sport-hatasiz-sunroof-nbt-k.isitma-ful-plusful-1268624006/detay' },
-    { id:'d2', brand:'Mercedes-Benz', title:'C200 Edition 1 AMG',    variant:'2022 · Taba İç · AMG Paket · Hatasız',              price:'3.055.000 ₺', km:'—',         year:'2022', transmission:'Otomatik', fuel:'Benzin', status:'active', badge:'',     image:'https://i0.shbdn.com/photos/90/45/44/1301904544b15.jpg', url:'https://sahibinden.com/ilan/vasita-otomobil-mercedes-benz-gok-garage-2022-mercedes-benz-c200-edition-1-amg-hatasiz-taba-1301904544/detay' },
-    { id:'d3', brand:'Honda',         title:'Civic',                 variant:'1.6i-VTEC Eco Elegance · 2017 · Otomatik',          price:'1.275.000 ₺', km:'—',         year:'2017', transmission:'Otomatik', fuel:'Benzin', status:'active', badge:'',     image:'https://i0.shbdn.com/photos/91/03/34/1301910334b15.jpg', url:'https://sahibinden.com/ilan/vasita-otomobil-honda-gok-garage-honda-civic-1-6i-vtec-eco-elegance-otomatik-1301910334/detay' },
-    { id:'d4', brand:'Hyundai',       title:'i30 Elite Plus',        variant:'Dizel · Otomatik · Cam Tavan · Isıtmalı Koltuk',    price:'1.335.000 ₺', km:'—',         year:'',     transmission:'Otomatik', fuel:'Dizel',  status:'active', badge:'',     image:'https://i0.shbdn.com/photos/14/86/19/1298148619b15.jpg', url:'https://sahibinden.com/ilan/vasita-otomobil-hyundai-gok-garage-hyundai-i30-elite-plus-dizel-otomatik-cam-tavan-k-isitma-1298148619/detay' },
-    { id:'d5', brand:'Porsche',       title:'Panamera Diesel',       variant:'Hatasız · 60.000 KM · Yetkili Bakım · Beyaz',       price:'10.055.000 ₺',km:'60.000 KM', year:'',     transmission:'Otomatik', fuel:'Dizel',  status:'active', badge:'ÖZEL', image:'https://i0.shbdn.com/photos/03/16/99/1290031699b15.jpg', url:'https://sahibinden.com/ilan/vasita-otomobil-porsche-gok-garage-porsche-panamera-diesel-hatasiz-60binkm-yetkili-bakim-1290031699/detay' },
-    { id:'d6', brand:'Ford',          title:'Tourneo Custom',        variant:'2023 · 8+1 Kişilik · Otomatik · Dizel · 450 KM',   price:'1.755.000 ₺', km:'450 KM',    year:'2023', transmission:'Otomatik', fuel:'Dizel',  status:'active', badge:'YENİ', image:'https://i0.shbdn.com/photos/26/60/51/1300266051b15.jpg', url:'https://sahibinden.com/ilan/vasita-minivan-panelvan-ford-gok-garage-2023-ford-tourneo-custom-8-1-hatasiz-otomatik-450km-1300266051/detay' },
-  ];
-
+  /* ---- Araçları API'den çek -------------------------------- */
   async function loadCars() {
     try {
-      var r = await fetch('cars.json', { cache: 'no-cache' });
+      // /api/cars — Vercel serverless function (sahibinden'i sunucuda çeker)
+      var r = await fetch('/api/cars');
       if (r.ok) {
         var d = await r.json();
-        var list = d.cars || d;
-        if (Array.isArray(list) && list.length) return list;
+        var list = (d.cars || []).filter(function (c) { return c.status !== 'sold'; });
+        if (list.length) {
+          if (demoBanner) demoBanner.classList.remove('show');
+          return list;
+        }
       }
-    } catch (_) { /* silent */ }
+    } catch (_) { /* ağ hatası → fallback */ }
+
+    // API çalışmazsa cars.json'a dön
+    try {
+      var r2 = await fetch('cars.json?_=' + Date.now(), { cache: 'no-cache' });
+      if (r2.ok) {
+        var d2 = await r2.json();
+        var list2 = (d2.cars || d2).filter(function (c) { return c.status !== 'sold'; });
+        if (list2.length) return list2;
+      }
+    } catch (_) { /* yok */ }
+
     if (demoBanner) demoBanner.classList.add('show');
-    return DEMO_CARS;
+    return [];
   }
 
+  /* ---- Grid render ---------------------------------------- */
   function renderGrid(cars) {
     if (!grid) return;
     if (!cars || !cars.length) {
-      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:#888;font-size:.9rem">Gösterilecek araç bulunamadı.</div>';
+      grid.innerHTML =
+        '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:#888;font-size:.9rem">' +
+        'Gösterilecek araç bulunamadı.</div>';
       return;
     }
-    var badgeCls = function(b) {
-      return b === 'YENİ' ? 'car-badge--new' : b === 'SATILDI' ? 'car-badge--sold' : 'car-badge--hot';
+
+    var badgeCls = function (b) {
+      return b === 'YENİ' ? 'car-badge--new'
+           : b === 'SATILDI' ? 'car-badge--sold'
+           : 'car-badge--hot';
     };
+
     grid.innerHTML = cars.map(function (c) {
       var sold = c.status === 'sold';
       return (
-        '<article class="car-card' + (sold ? ' sold' : '') + '" onclick="window.open(\'' + esc(c.url || '#') + '\',\'_blank\')">' +
+        '<article class="car-card' + (sold ? ' sold' : '') + '"' +
+        (!sold ? ' onclick="window.open(\'' + esc(c.url || '#') + '\',\'_blank\')"' : '') + '>' +
         '<div class="car-img">' +
-        (c.image ? '<img src="' + esc(c.image) + '" alt="' + esc(c.brand + ' ' + c.title) + '" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=car-img-ph>🚗</div>\'">' : '<div class="car-img-ph">🚗</div>') +
+        (c.image
+          ? '<img src="' + esc(c.image) + '" alt="' + esc(c.brand + ' ' + c.title) +
+            '" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=car-img-ph>🚗</div>\'">'
+          : '<div class="car-img-ph">🚗</div>') +
         (c.badge ? '<span class="car-badge ' + badgeCls(c.badge) + '">' + esc(c.badge) + '</span>' : '') +
-        '<span class="car-source">sahibinden.com</span></div>' +
+        '<span class="car-source">sahibinden.com</span>' +
+        '</div>' +
         '<div class="car-body">' +
         '<p class="car-brand">' + esc(c.brand) + '</p>' +
         '<h3 class="car-name">' + esc(c.title) + '</h3>' +
@@ -163,6 +187,7 @@
     }).join('');
   }
 
+  /* ---- Filtre uygula -------------------------------------- */
   function applyFilter(tab) {
     activeFilter = tab;
     var list = allCars;
@@ -179,12 +204,19 @@
     });
   });
 
-  (async function init() {
+  /* ---- İlk yükleme + otomatik yenileme ------------------- */
+  async function refresh() {
     if (!grid) return;
     allCars = await loadCars();
     var n = allCars.filter(function (c) { return c.status !== 'sold'; }).length;
     if (statActive) { statActive.textContent = n; statActive.dataset.target = n; }
-    applyFilter('all');
+    applyFilter(activeFilter);
+  }
+
+  (async function init() {
+    await refresh();
+    // Her AUTO_REFRESH_MS ms'de sayfayı yeniden çek
+    setInterval(refresh, AUTO_REFRESH_MS);
   })();
 
   /* ── 5. SSS ACCORDION ──────────────────────────────────── */
@@ -193,7 +225,9 @@
     if (!btn) return;
     btn.addEventListener('click', function () {
       var wasOpen = item.classList.contains('active');
-      document.querySelectorAll('.faq-item.active').forEach(function (i) { i.classList.remove('active'); });
+      document.querySelectorAll('.faq-item.active').forEach(function (i) {
+        i.classList.remove('active');
+      });
       if (!wasOpen) item.classList.add('active');
     });
   });
@@ -213,8 +247,11 @@
   /* ── 7. UTILITY ────────────────────────────────────────── */
   function esc(s) {
     return String(s || '')
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
 })();

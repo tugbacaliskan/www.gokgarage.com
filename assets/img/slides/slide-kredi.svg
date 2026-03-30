@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900">
+  <defs>
+    <!-- Ana arka plan gradyanı -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a"/>
+      <stop offset="50%" style="stop-color:#0f0f1a"/>
+      <stop offset="100%" style="stop-color:#0a0a0a"/>
+    </linearGradient>
+    <!-- Kırmızı parıltı -->
+    <radialGradient id="redGlow" cx="75%" cy="50%" r="45%">
+      <stop offset="0%" style="stop-color:#C8000B;stop-opacity:0.18"/>
+      <stop offset="100%" style="stop-color:#C8000B;stop-opacity:0"/>
+    </radialGradient>
+    <!-- Altın parıltı -->
+    <radialGradient id="goldGlow" cx="25%" cy="30%" r="35%">
+      <stop offset="0%" style="stop-color:#c9a84c;stop-opacity:0.12"/>
+      <stop offset="100%" style="stop-color:#c9a84c;stop-opacity:0"/>
+    </radialGradient>
+    <!-- Kart parıltısı -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e1e2e"/>
+      <stop offset="100%" style="stop-color:#16162a"/>
+    </linearGradient>
+    <linearGradient id="cardShine" x1="0%" y1="0%" x2="60%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.08"/>
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"/>
+    </linearGradient>
+    <!-- Çizgi gradyan -->
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#C8000B;stop-opacity:0"/>
+      <stop offset="30%" style="stop-color:#C8000B;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#c9a84c;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#c9a84c;stop-opacity:0"/>
+    </linearGradient>
+    <!-- Bar gradyan -->
+    <linearGradient id="barGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#C8000B"/>
+      <stop offset="100%" style="stop-color:#c9a84c"/>
+    </linearGradient>
+    <filter id="blur1">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+    <filter id="blur2">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="24" stdDeviation="40" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Arka plan -->
+  <rect width="1440" height="900" fill="url(#bg)"/>
+  <rect width="1440" height="900" fill="url(#redGlow)"/>
+  <rect width="1440" height="900" fill="url(#goldGlow)"/>
+
+  <!-- Izgara deseni -->
+  <g opacity="0.04">
+    <line x1="0" y1="150" x2="1440" y2="150" stroke="#ffffff" stroke-width="1"/>
+    <line x1="0" y1="300" x2="1440" y2="300" stroke="#ffffff" stroke-width="1"/>
+    <line x1="0" y1="450" x2="1440" y2="450" stroke="#ffffff" stroke-width="1"/>
+    <line x1="0" y1="600" x2="1440" y2="600" stroke="#ffffff" stroke-width="1"/>
+    <line x1="0" y1="750" x2="1440" y2="750" stroke="#ffffff" stroke-width="1"/>
+    <line x1="180" y1="0" x2="180" y2="900" stroke="#ffffff" stroke-width="1"/>
+    <line x1="360" y1="0" x2="360" y2="900" stroke="#ffffff" stroke-width="1"/>
+    <line x1="540" y1="0" x2="540" y2="900" stroke="#ffffff" stroke-width="1"/>
+    <line x1="720" y1="0" x2="720" y2="900" stroke="#ffffff" stroke-width="1"/>
+    <line x1="900" y1="0" x2="900" y2="900" stroke="#ffffff" stroke-width="1"/>
+    <line x1="1080" y1="0" x2="1080" y2="900" stroke="#ffffff" stroke-width="1"/>
+    <line x1="1260" y1="0" x2="1260" y2="900" stroke="#ffffff" stroke-width="1"/>
+  </g>
+
+  <!-- Sağ taraf büyük dekoratif daireler -->
+  <circle cx="1150" cy="450" r="350" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.04"/>
+  <circle cx="1150" cy="450" r="260" fill="none" stroke="#C8000B" stroke-width="1" opacity="0.08"/>
+  <circle cx="1150" cy="450" r="170" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.1"/>
+
+  <!-- Ana kredi kartı — büyük, sağda -->
+  <g transform="rotate(-8, 980, 400)" filter="url(#cardShadow)">
+    <rect x="760" y="180" width="420" height="265" rx="22" fill="url(#cardGrad)"/>
+    <rect x="760" y="180" width="420" height="265" rx="22" fill="url(#cardShine)"/>
+    <!-- Kart chip -->
+    <rect x="800" y="240" width="52" height="40" rx="6" fill="#c9a84c" opacity="0.9"/>
+    <line x1="813" y1="240" x2="813" y2="280" stroke="#a07a20" stroke-width="1.5"/>
+    <line x1="826" y1="240" x2="826" y2="280" stroke="#a07a20" stroke-width="1.5"/>
+    <line x1="839" y1="240" x2="839" y2="280" stroke="#a07a20" stroke-width="1.5"/>
+    <line x1="800" y1="255" x2="852" y2="255" stroke="#a07a20" stroke-width="1.5"/>
+    <line x1="800" y1="265" x2="852" y2="265" stroke="#a07a20" stroke-width="1.5"/>
+    <!-- NFC simgesi -->
+    <path d="M886 248 Q900 260 886 272" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+    <path d="M895 240 Q915 260 895 280" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.35"/>
+    <path d="M904 233 Q930 260 904 287" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.2"/>
+    <!-- Kart numarası -->
+    
+    <!-- Kart sahibi -->
+    
+    
+    <!-- Son kullanma -->
+    
+    
+    <!-- Logo alanı -->
+    <circle cx="1130" cy="215" r="20" fill="#C8000B" opacity="0.8"/>
+    <circle cx="1148" cy="215" r="20" fill="#c9a84c" opacity="0.6"/>
+  </g>
+
+  <!-- İkinci kart — hafif görünen, arkada -->
+  <g transform="rotate(5, 900, 520)" opacity="0.45">
+    <rect x="820" y="380" width="420" height="265" rx="22" fill="#1a1a1a"/>
+    <rect x="820" y="380" width="420" height="265" rx="22" fill="url(#cardShine)"/>
+    <line x1="820" y1="430" x2="1240" y2="430" stroke="#C8000B" stroke-width="3" opacity="0.6"/>
+  </g>
+
+  <!-- Sol taraf — metin ve bilgi alanı -->
+  <!-- Yatay çizgi accent -->
+  <rect x="120" y="295" width="60" height="3" fill="url(#barGrad)" rx="2"/>
+
+  <!-- Üst etiket -->
+  
+
+  <!-- Ana başlık -->
+  
+  
+  
+  
+
+  <!-- Alt açıklama -->
+  
+
+  <!-- Özellik satırları -->
+  <!-- Faiz oranı bar -->
+  <rect x="120" y="620" width="360" height="1" fill="rgba(255,255,255,0.1)"/>
+  <g transform="translate(120, 640)">
+    <!-- Item 1 -->
+    <rect x="0" y="0" width="4" height="32" rx="2" fill="#C8000B"/>
+    
+    
+    <!-- Item 2 -->
+    <rect x="0" y="52" width="4" height="32" rx="2" fill="#c9a84c"/>
+    
+    
+    <!-- Item 3 -->
+    <rect x="0" y="104" width="4" height="32" rx="2" fill="#C8000B"/>
+    
+    
+  </g>
+
+  <!-- Dekoratif yatay çizgi -->
+  <line x1="0" y1="860" x2="1440" y2="860" stroke="url(#lineGrad)" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Alt köşe dekor -->
+  
+
+  <!-- Küçük dekoratif noktalar -->
+  <circle cx="120" cy="870" r="3" fill="#C8000B" opacity="0.6"/>
+  <circle cx="134" cy="870" r="2" fill="#c9a84c" opacity="0.4"/>
+  <circle cx="145" cy="870" r="1.5" fill="#ffffff" opacity="0.2"/>
+</svg>

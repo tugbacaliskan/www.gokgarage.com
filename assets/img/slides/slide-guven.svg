@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#050505"/>
+      <stop offset="40%" style="stop-color:#0c0c0c"/>
+      <stop offset="100%" style="stop-color:#080808"/>
+    </linearGradient>
+    <radialGradient id="heroGlow3" cx="70%" cy="45%" r="42%">
+      <stop offset="0%" style="stop-color:#C8000B;stop-opacity:0.2"/>
+      <stop offset="50%" style="stop-color:#C8000B;stop-opacity:0.05"/>
+      <stop offset="100%" style="stop-color:#C8000B;stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="shieldGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#C8000B;stop-opacity:0.35"/>
+      <stop offset="70%" style="stop-color:#C8000B;stop-opacity:0.08"/>
+      <stop offset="100%" style="stop-color:#C8000B;stop-opacity:0"/>
+    </radialGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e1e1e"/>
+      <stop offset="100%" style="stop-color:#111111"/>
+    </linearGradient>
+    <linearGradient id="shieldBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C8000B"/>
+      <stop offset="50%" style="stop-color:#c9a84c"/>
+      <stop offset="100%" style="stop-color:#C8000B"/>
+    </linearGradient>
+    <linearGradient id="checkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C8000B"/>
+      <stop offset="100%" style="stop-color:#c9a84c"/>
+    </linearGradient>
+    <linearGradient id="redGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#C8000B"/>
+      <stop offset="100%" style="stop-color:#c9a84c"/>
+    </linearGradient>
+    <filter id="shieldFilter">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowRed">
+      <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="bigBlur">
+      <feGaussianBlur stdDeviation="80"/>
+    </filter>
+    <clipPath id="shieldClip">
+      <path d="M980 130 L1220 200 L1220 430 Q1220 560 980 640 Q740 560 740 430 L740 200 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Arka plan -->
+  <rect width="1440" height="900" fill="url(#bg3)"/>
+  <rect width="1440" height="900" fill="url(#heroGlow3)"/>
+
+  <!-- Sağda büyük kırmızı aura -->
+  <ellipse cx="980" cy="390" rx="320" ry="280" fill="#C8000B" opacity="0.06" filter="url(#bigBlur)"/>
+
+  <!-- Nokta deseni -->
+  <g opacity="0.06" fill="#ffffff">
+    <circle cx="700" cy="100" r="2"/><circle cx="760" cy="100" r="2"/><circle cx="820" cy="100" r="2"/>
+    <circle cx="880" cy="100" r="2"/><circle cx="940" cy="100" r="2"/><circle cx="1000" cy="100" r="2"/>
+    <circle cx="1060" cy="100" r="2"/><circle cx="1120" cy="100" r="2"/><circle cx="1180" cy="100" r="2"/>
+    <circle cx="1240" cy="100" r="2"/><circle cx="1300" cy="100" r="2"/>
+    <circle cx="700" cy="160" r="2"/><circle cx="760" cy="160" r="2"/><circle cx="820" cy="160" r="2"/>
+    <circle cx="880" cy="160" r="2"/><circle cx="940" cy="160" r="2"/><circle cx="1000" cy="160" r="2"/>
+    <circle cx="1060" cy="160" r="2"/><circle cx="1120" cy="160" r="2"/><circle cx="1180" cy="160" r="2"/>
+    <circle cx="1240" cy="160" r="2"/><circle cx="1300" cy="160" r="2"/>
+    <circle cx="700" cy="220" r="2"/><circle cx="760" cy="220" r="2"/><circle cx="820" cy="220" r="2"/>
+    <circle cx="880" cy="220" r="2"/><circle cx="940" cy="220" r="2"/><circle cx="1000" cy="220" r="2"/>
+    <circle cx="1060" cy="220" r="2"/><circle cx="1120" cy="220" r="2"/><circle cx="1180" cy="220" r="2"/>
+    <circle cx="1240" cy="220" r="2"/><circle cx="1300" cy="220" r="2"/>
+    <circle cx="700" cy="800" r="2"/><circle cx="760" cy="800" r="2"/><circle cx="820" cy="800" r="2"/>
+    <circle cx="880" cy="800" r="2"/><circle cx="940" cy="800" r="2"/><circle cx="1000" cy="800" r="2"/>
+    <circle cx="1060" cy="800" r="2"/><circle cx="1120" cy="800" r="2"/><circle cx="1180" cy="800" r="2"/>
+    <circle cx="1240" cy="800" r="2"/><circle cx="1300" cy="800" r="2"/>
+  </g>
+
+  <!-- ── BÜYÜK KALKAN (Sağda) ── -->
+  <!-- Arka plan hale -->
+  <ellipse cx="980" cy="385" rx="260" ry="240" fill="url(#shieldGlow)" opacity="0.5"/>
+
+  <!-- Kalkan gövdesi -->
+  <path d="M980 115 L1230 192 L1230 428 Q1230 575 980 660 Q730 575 730 428 L730 192 Z"
+        fill="url(#shieldGrad)" stroke="url(#shieldBorder)" stroke-width="2.5" opacity="0.95"/>
+
+  <!-- Kalkan iç kenarlık -->
+  <path d="M980 148 L1198 212 L1198 428 Q1198 554 980 628 Q762 554 762 428 L762 212 Z"
+        fill="none" stroke="rgba(200,0,11,0.2)" stroke-width="1"/>
+  <path d="M980 180 L1166 234 L1166 428 Q1166 534 980 600 Q794 534 794 428 L794 234 Z"
+        fill="none" stroke="rgba(201,168,76,0.12)" stroke-width="1"/>
+
+  <!-- Kalkan merkezi onay işareti -->
+  <!-- Çember -->
+  <circle cx="980" cy="380" r="105" fill="rgba(200,0,11,0.12)" stroke="#C8000B" stroke-width="2.5" opacity="0.8"/>
+  <circle cx="980" cy="380" r="90" fill="rgba(200,0,11,0.08)"/>
+
+  <!-- Check işareti -->
+  <polyline points="930,378 962,412 1040,330"
+            fill="none" stroke="url(#checkGrad)" stroke-width="10"
+            stroke-linecap="round" stroke-linejoin="round"
+            filter="url(#glowRed)"/>
+
+  <!-- Kalkan alt yazı -->
+  
+
+  <!-- Kalkan köşe dekorları -->
+  <circle cx="980" cy="138" r="5" fill="#C8000B" opacity="0.8"/>
+  <circle cx="1228" cy="195" r="4" fill="#C8000B" opacity="0.5"/>
+  <circle cx="1228" cy="428" r="4" fill="#c9a84c" opacity="0.5"/>
+  <circle cx="730" cy="195" r="4" fill="#C8000B" opacity="0.5"/>
+  <circle cx="730" cy="428" r="4" fill="#c9a84c" opacity="0.5"/>
+
+  <!-- ── SOL METİN ── -->
+  <!-- Dekor -->
+  <rect x="120" y="262" width="50" height="2" fill="#C8000B" rx="1"/>
+  <rect x="178" y="262" width="20" height="2" fill="#c9a84c" rx="1"/>
+
+  
+
+  <!-- Ana başlık -->
+  
+  
+  
+  
+  
+
+  <!-- Ayraç -->
+  <rect x="120" y="542" width="100" height="2" rx="1" fill="url(#redGold)" opacity="0.8"/>
+
+  <!-- Alt slogan -->
+  
+
+  <!-- Özellik listesi -->
+  <g transform="translate(120, 614)">
+    <!-- Satır 1 -->
+    <rect x="0" y="0" width="18" height="18" rx="9" fill="#C8000B" opacity="0.9"/>
+    <polyline points="5,9 8,13 14,5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    
+
+    <!-- Satır 2 -->
+    <rect x="0" y="32" width="18" height="18" rx="9" fill="#C8000B" opacity="0.9"/>
+    <polyline points="5,41 8,45 14,37" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    
+
+    <!-- Satır 3 -->
+    <rect x="0" y="64" width="18" height="18" rx="9" fill="#C8000B" opacity="0.9"/>
+    <polyline points="5,73 8,77 14,69" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    
+
+    <!-- Satır 4 -->
+    <rect x="0" y="96" width="18" height="18" rx="9" fill="#c9a84c" opacity="0.9"/>
+    <polyline points="5,105 8,109 14,101" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    
+  </g>
+
+  <!-- Sertifika rozet -->
+  <g transform="translate(120, 758)">
+    <rect x="0" y="0" width="200" height="52" rx="10"
+          fill="rgba(201,168,76,0.1)" stroke="#c9a84c" stroke-width="1.5" opacity="0.8"/>
+    
+    
+    <!-- Yıldız simgesi -->
+    <polygon points="12,26 14,22 16,26 20,26 17,29 18,33 14,31 10,33 11,29 8,26"
+             fill="#c9a84c" opacity="0.8" transform="translate(0,8)"/>
+  </g>
+
+  <!-- Alt çizgi -->
+  <rect x="0" y="858" width="1440" height="1" fill="url(#redGold)" opacity="0.3"/>
+
+  <!-- Sağ alt -->
+  
+</svg>

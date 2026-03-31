@@ -46,7 +46,7 @@
             <rect width="22" height="18" rx="2.5" fill="#FFE800"/>
             <text x="11" y="13.5" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="13" fill="#3F475F">S</text>
           </svg>
-          Sahibinden Kurumsal
+          <span>Sahibinden Kurumsal</span>
         </a>
       </div>
     </div>
@@ -61,15 +61,15 @@
     <div class="navbar-inner">
       <a href="index.html" class="navbar-brand">
         <img src="assets/img/logo.png" alt="Gök Garage" />
-        <!--<span class="brand-text">GÖK <em>GARAGE</em></span>-->
       </a>
 
-      <nav class="navbar-nav" id="nav-links">
-        <a href="index.html" class="nav-item active">Ana Sayfa</a>
-        <a href="#vitrin" class="nav-item">Araçlar</a>
-        <a href="#neden" class="nav-item">Hakkımızda</a>
-        <a href="#sss" class="nav-item">SSS</a>
-        <a href="#footer" class="nav-item">İletişim</a>
+      <!-- Masaüstü nav (navbar içinde kalır) -->
+      <nav class="navbar-nav-desktop">
+        <a href="#hero" class="nav-item" data-section="hero">Ana Sayfa</a>
+        <a href="#vitrin" class="nav-item" data-section="vitrin">Araçlar</a>
+        <a href="#neden" class="nav-item" data-section="neden">Hakkımızda</a>
+        <a href="#sss" class="nav-item" data-section="sss">SSS</a>
+        <a href="#iletisim" class="nav-item" data-section="iletisim">İletişim</a>
       </nav>
 
       <div class="navbar-actions">
@@ -83,6 +83,19 @@
     </div>
   </div>
 </header>
+
+<!-- Mobil menü — navbar dışında, stacking context sorunu yok -->
+<nav class="navbar-nav" id="nav-links">
+  <a href="#hero" class="nav-item" data-section="hero">Ana Sayfa</a>
+  <a href="#vitrin" class="nav-item" data-section="vitrin">Araçlar</a>
+  <a href="#neden" class="nav-item" data-section="neden">Hakkımızda</a>
+  <a href="#reviews" class="nav-item" data-section="reviews">Yorumlar</a>
+  <a href="#sss" class="nav-item" data-section="sss">SSS</a>
+  <a href="#iletisim" class="nav-item" data-section="iletisim">İletişim</a>
+  <a href="https://wa.me/905327643748" target="_blank" class="nav-wa-mobile">
+    <i class="bi bi-whatsapp"></i> WhatsApp'tan Ulaşın
+  </a>
+</nav>
 
 <!-- ════════════════════════════════════════
      HERO
@@ -294,41 +307,6 @@
 </section>
 
 <!-- ════════════════════════════════════════
-     GÖRSEL BANT (Masonry/Gallery)
-════════════════════════════════════════ -->
-<section class="gallery-band" aria-label="Araç Galerisi">
-  <div class="gb-item gb-large">
-    <img src="https://i0.shbdn.com/photos/62/40/06/1268624006b15.jpg" alt="BMW 320D" loading="lazy" />
-    <div class="gb-overlay"><span>BMW 320D M Sport</span></div>
-  </div>
-  <div class="gb-col">
-    <div class="gb-item">
-      <img src="https://i0.shbdn.com/photos/90/45/44/1301904544b15.jpg" alt="Mercedes C200" loading="lazy" />
-      <div class="gb-overlay"><span>Mercedes C200 AMG</span></div>
-    </div>
-    <div class="gb-item">
-      <img src="https://i0.shbdn.com/photos/91/03/34/1301910334b15.jpg" alt="Honda Civic" loading="lazy" />
-      <div class="gb-overlay"><span>Honda Civic</span></div>
-    </div>
-  </div>
-  <div class="gb-col">
-    <div class="gb-item">
-      <img src="https://i0.shbdn.com/photos/03/16/99/1290031699b15.jpg" alt="Porsche Panamera" loading="lazy" />
-      <div class="gb-overlay"><span>Porsche Panamera</span></div>
-    </div>
-    <div class="gb-item gb-cta-box">
-      <div class="gb-cta-inner">
-        <p class="gb-cta-eyebrow">Portföyümüz</p>
-        <h3>8 Araç<br>Sizi Bekliyor</h3>
-        <a href="https://gokgarage.sahibinden.com" target="_blank" class="btn-primary">
-          Tümünü Keşfet <i class="bi bi-arrow-right"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════
      GOOGLE YORUMLARI
 ════════════════════════════════════════ -->
 <section class="reviews" id="reviews" aria-label="Müşteri Yorumları">
@@ -339,9 +317,9 @@
       <div class="google-rating">
         <div class="gr-stars">
           <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-          <i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
         </div>
-        <span class="gr-score">4.8</span>
+        <span class="gr-score">5.5</span>
         <span class="gr-count">Google'da 47 yorum</span>
         <a href="https://g.co/kgs/gokgarage" target="_blank" class="gr-link">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/24px-Google_%22G%22_logo.svg.png" alt="Google" /> Google'da Gör
@@ -399,6 +377,131 @@
         <p class="rc-date">3 ay önce</p>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     MARKA BANDI — sonsuz kayan
+════════════════════════════════════════ -->
+<section class="brands-band" aria-label="Portföyümüzdeki Markalar">
+  <p class="brands-label">Portföyümüzdeki Markalar</p>
+  <div class="brands-marquee">
+    <div class="brands-track">
+      <span class="brand-item">BMW</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Mercedes-Benz</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Porsche</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Volkswagen</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Audi</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Ford</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Honda</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Hyundai</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Kia</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Toyota</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Renault</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Peugeot</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Opel</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Land Rover</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Lexus</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Volvo</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Jeep</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Maserati</span>
+      <span class="brand-dot">·</span>
+    </div>
+    <!-- Seamless loop için kopya -->
+    <div class="brands-track" aria-hidden="true">
+      <span class="brand-item">BMW</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Mercedes-Benz</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Porsche</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Volkswagen</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Audi</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Ford</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Honda</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Hyundai</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Kia</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Toyota</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Renault</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Peugeot</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Opel</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Land Rover</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Lexus</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Volvo</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Jeep</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-item">Maserati</span>
+      <span class="brand-dot">·</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CTA — SAHİBİNDEN MAĞAZA
+════════════════════════════════════════ -->
+<section class="cta-band" aria-label="Sahibinden Mağaza">
+  <div class="cta-bg">
+    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&q=85&fit=crop&crop=center" alt="Premium araç" />
+  </div>
+  <div class="cta-overlay"></div>
+  <div class="container cta-inner">
+    <div class="cta-text">
+      <p class="eyebrow" style="color:var(--gold)">Sahibinden Kurumsal</p>
+      <h2 class="cta-title">Tüm İlanlarımız<br><em>Tek Bir Yerde</em></h2>
+      <p class="cta-desc">Güncel araç portföyümüz, detaylı fotoğraflar ve şeffaf fiyatlarla sahibinden.com kurumsal mağazamızda sizi bekliyor.</p>
+      <div class="cta-btns">
+        <a href="https://gokgarage.sahibinden.com" target="_blank" class="btn-primary">
+          Mağazayı Ziyaret Et <i class="bi bi-arrow-right"></i>
+        </a>
+        <a href="https://wa.me/905327643748" target="_blank" class="btn-ghost">
+          <i class="bi bi-whatsapp"></i> WhatsApp'tan Sor
+        </a>
+      </div>
+    </div>
+    <div class="cta-badges">
+      <div class="cta-badge">
+        <i class="bi bi-patch-check-fill"></i>
+        <span>Kurumsal Mağaza</span>
+      </div>
+      <div class="cta-badge">
+        <i class="bi bi-shield-check"></i>
+        <span>Ekspertiz Güvencesi</span>
+      </div>
+      <div class="cta-badge">
+        <i class="bi bi-camera"></i>
+        <span>Detaylı Fotoğraflar</span>
+      </div>
     </div>
   </div>
 </section>
@@ -469,6 +572,70 @@
 </section>
 
 <!-- ════════════════════════════════════════
+     İLETİŞİM & KONUM
+════════════════════════════════════════ -->
+<section class="contact" id="contact" aria-label="İletişim ve Konum">
+  <div class="contact-grid">
+
+    <!-- Sol: Koyu panel -->
+    <div class="contact-panel">
+      <div class="contact-panel-inner">
+        <p class="eyebrow">Bize Ulaşın</p>
+        <h2 class="section-title" style="color:#fff;margin-bottom:2.5rem">
+          Galeriyi<br><em>Ziyaret Edin</em>
+        </h2>
+
+        <div class="contact-row">
+          <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+          <div>
+            <p class="contact-label">Adres</p>
+            <p class="contact-val">Cumhuriyet, İsmet İnönü Cad. No:32<br>Çayırova / Kocaeli</p>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
+          <div>
+            <p class="contact-label">Telefon</p>
+            <a href="tel:+905327643748" class="contact-val contact-link">+90 532 764 3748</a>
+            <a href="tel:+905331342355" class="contact-val contact-link">+90 533 134 2355</a>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon"><i class="bi bi-clock-fill"></i></div>
+          <div>
+            <p class="contact-label">Çalışma Saatleri</p>
+            <p class="contact-val">Pzt – Cmt: 09:00 – 19:00</p>
+            <p class="contact-val">Pazar: Randevuyla</p>
+          </div>
+        </div>
+
+        <div class="contact-actions">
+          <a href="https://wa.me/905327643748" target="_blank" class="btn-primary">
+            <i class="bi bi-whatsapp"></i> WhatsApp
+          </a>
+          <a href="tel:+905327643748" class="contact-call-btn">
+            <i class="bi bi-telephone"></i> Hemen Ara
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sağ: Harita -->
+    <div class="contact-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3015.872580322368!2d29.376530315699!3d40.810206179323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac39a08ca81f9%3A0x9e6b3ee4ec1d4e8e!2zR8O2ayBHYXJhZ2U!5e0!3m2!1str!2str!4v1711900000000!5m2!1str!2str"
+        width="100%" height="100%" style="border:0;" allowfullscreen=""
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Gök Garage Konum">
+      </iframe>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
      FOOTER
 ════════════════════════════════════════ -->
 <footer class="footer" id="footer">
@@ -482,15 +649,11 @@
           <span class="footer-brand-text" style="display:none">GÖK <em>GARAGE</em></span>
           <p class="footer-desc">Kocaeli Çayırova'nın güvenilir premium oto galerisi. 10 yılı aşkın deneyim ve yüzlerce mutlu müşteri.</p>
           <div class="footer-social">
-            <a href="https://wa.me/905327643748" target="_blank" aria-label="WhatsApp">
-              <i class="bi bi-whatsapp"></i>
-            </a>
-            <a href="https://gokgarage.sahibinden.com" target="_blank" aria-label="Sahibinden">
-              <i class="bi bi-shop"></i>
-            </a>
-            <a href="tel:+905327643748" aria-label="Telefon">
-              <i class="bi bi-telephone"></i>
-            </a>
+            <a href="tel:+905327643748" aria-label="Telefon"><i class="bi bi-telephone"></i></a>
+            <a href="https://wa.me/905327643748" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://www.instagram.com/gokgarage/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://gokgarage.sahibinden.com" target="_blank" aria-label="Sahibinden"><i class="bi bi-shop"></i></a>
+            
           </div>
         </div>
 
@@ -534,7 +697,7 @@
             <li><span>Pazar</span><span>Randevuyla</span></li>
           </ul>
           <a href="https://wa.me/905327643748" target="_blank" class="footer-wa-btn">
-            <i class="bi bi-whatsapp"></i> WhatsApp'tan Yazın
+            <i class="bi bi-whatsapp"></i> WhatsApp
           </a>
         </div>
 
